@@ -13,7 +13,7 @@ const navigation = [
   { name: 'Contacto', href: '/contacto' },
 ];
 
-const Head = () => {
+const Header = () => {
   return (
     <header>
       <Popover className="relative bg-white shadow-md">
@@ -37,7 +37,7 @@ const Head = () => {
             ))}
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <Link href="/app/login" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+            <Link href="/app" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
               Iniciar sesión
             </Link>
           </div>
@@ -78,7 +78,7 @@ const Head = () => {
                 <div className="mt-6">
                   <p className="mt-6 text-center text-base font-medium text-gray-500">
                     Tienes una cuenta?{' '}
-                    <Link href="/app/login" className="text-gray-900">
+                    <Link href="/app" className="text-gray-900">
                       Inicia sesión
                     </Link>
                   </p>
@@ -92,4 +92,4 @@ const Head = () => {
   );
 };
 
-export default Head;
+export default Header;

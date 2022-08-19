@@ -13,9 +13,7 @@ const Layout = ({ children }) => {
         <meta name="description" content="Lagalm, soluciones integrales en inyección de plástico." />
         <link rel="shortcut icon" href="https://res.cloudinary.com/lagalm/image/upload/v1660168772/logo_nvfgba.png" type="image/svg" />
       </Head>
-      <div className="h-screen">
-        {router.pathname !== '/app/login' && router.pathname.includes('/app') ? <LayoutApp /> : router.pathname === '/app/login' ? children : <LayoutWeb> {children} </LayoutWeb>}
-      </div>
+      <div className="h-screen">{router.pathname.includes('/app') ? <LayoutApp> {children} </LayoutApp> : <LayoutWeb> {children} </LayoutWeb>}</div>
     </>
   );
 };
