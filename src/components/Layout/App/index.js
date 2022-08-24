@@ -31,6 +31,8 @@ const LayoutApp = ({ children }) => {
     [auth]
   );
 
+  if (auth === undefined) return null;
+
   return <AuthContext.Provider value={authData}>{!auth ? <Login /> : <Dashboard>{children}</Dashboard>}</AuthContext.Provider>;
 };
 

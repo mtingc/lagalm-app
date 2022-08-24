@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { CogIcon, HomeIcon, ShieldCheckIcon } from '@heroicons/react/outline';
 
-const navigation = [{ name: 'Dashboard', href: 'app/', icon: HomeIcon, current: true }];
+const navigation = [{ name: 'Dashboard', href: '/app', icon: HomeIcon, current: false }];
 const secondaryNavigation = [
   { name: 'Configuración', href: '#', icon: CogIcon },
   { name: 'Privacidad', href: '#', icon: ShieldCheckIcon },

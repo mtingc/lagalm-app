@@ -1,9 +1,12 @@
-import Image from 'next/image';
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuAlt1Icon } from '@heroicons/react/outline';
 import { ChevronDownIcon, SearchIcon } from '@heroicons/react/solid';
 import { useAuth } from '@hooks/useAuth';
+
+import WomanAvatar from '@public/avatar/WOMAN.jpg';
+import ManAvatar from '@public/avatar/MAN.jpg';
+import DefaultAvatar from '@public/avatar/WOMAN.jpg';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -12,7 +15,7 @@ function classNames(...classes) {
 const userNavigation = [
   {
     name: 'Mi perfil',
-    href: '/perfil',
+    href: '/app/perfil',
     red: false,
   },
   {
@@ -24,7 +27,7 @@ const userNavigation = [
 
 const Navbar = ({ sidebar }) => {
   const { auth } = useAuth();
-  const { name, lastname } = auth.user;
+  const { name, lastname, avatar, gender } = auth.user;
   return (
     <div className="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:border-none">
       <button type="button" className="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500 lg:hidden" onClick={() => sidebar()}>
@@ -62,12 +65,10 @@ const Navbar = ({ sidebar }) => {
           <Menu as="div" className="ml-3 relative">
             <div>
               <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
-                <Image
-                  height={32}
-                  width={32}
-                  className="rounded-full"
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
+                <img
+                  className="rounded-full h-11 w-10 border p-1"
+                  src={avatar ? avatar : gender === 'female' ? WomanAvatar.src : gender === 'male' ? ManAvatar.src : DefaultAvatar.src}
+                  alt={('Perfil de ', name)}
                 />
                 <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
                   <span className="sr-only">Menu de usuario para </span>
