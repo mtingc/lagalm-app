@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuAlt1Icon } from '@heroicons/react/outline';
 import { ChevronDownIcon, SearchIcon } from '@heroicons/react/solid';
+import { useAuth } from '@hooks/useAuth';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -22,6 +23,8 @@ const userNavigation = [
 ];
 
 const Navbar = ({ sidebar }) => {
+  const { auth } = useAuth();
+  const { name, lastname } = auth.user;
   return (
     <div className="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:border-none">
       <button type="button" className="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500 lg:hidden" onClick={() => sidebar()}>
@@ -67,7 +70,8 @@ const Navbar = ({ sidebar }) => {
                   alt=""
                 />
                 <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
-                  <span className="sr-only">Menu de usuario para </span>Emilia Birch
+                  <span className="sr-only">Menu de usuario para </span>
+                  {name + ' ' + lastname}
                 </span>
                 <ChevronDownIcon className="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block" aria-hidden="true" />
               </Menu.Button>
