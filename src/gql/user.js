@@ -1,6 +1,15 @@
 import { gql } from '@apollo/client';
 
-const DETAILS_FRAGMENT = gql`
+const INFO_FRAGMENT = gql`
+  fragment InfoFragment on ResultInfo {
+    page
+    total
+    itemsPage
+    pages
+  }
+`;
+
+export const DETAILS_FRAGMENT = gql`
   fragment DetailsFragment on Details {
     status
     creatorUserId
@@ -17,7 +26,8 @@ const DETAILS_FRAGMENT = gql`
   }
 `;
 
-const USER_FRAGMENT = gql`
+export const USER_FRAGMENT = gql`
+  ${DETAILS_FRAGMENT}
   fragment UserFragment on User {
     id
     name
@@ -29,7 +39,7 @@ const USER_FRAGMENT = gql`
     role
     lastSession
     details {
-      ${DETAILS_FRAGMENT}
+      ...DetailsFragment
     }
   }
 `;
@@ -45,12 +55,30 @@ export const LOGIN_USER = gql`
 `;
 
 export const GET_USER = gql`
+  ${USER_FRAGMENT}
   query GetUser {
     me {
       status
       message
       user {
-        ${USER_FRAGMENT}
+        ...UserFragment
+      }
+    }
+  }
+`;
+
+export const GET_USERS = gql`
+  ${INFO_FRAGMENT}
+  ${USER_FRAGMENT}
+  query GetUsers($page: Int, $itemsPage: Int) {
+    users(page: $page, itemsPage: $itemsPage) {
+      info {
+        ...InfoFragment
+      }
+      status
+      message
+      users {
+        ...UserFragment
       }
     }
   }

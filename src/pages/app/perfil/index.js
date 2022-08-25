@@ -2,7 +2,7 @@ import Header from '@components/Layout/App/Header';
 
 import { useAuth } from '@hooks/useAuth';
 
-const Profile = () => {
+const ProfilePage = () => {
   const { auth } = useAuth();
   const { name, lastname, email, phone, birthday, gender } = auth.user;
 
@@ -47,4 +47,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

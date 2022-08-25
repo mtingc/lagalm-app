@@ -1,7 +1,10 @@
 import Image from 'next/image';
-import { CogIcon, HomeIcon, ShieldCheckIcon } from '@heroicons/react/outline';
+import { CogIcon, HomeIcon, UserGroupIcon, ShieldCheckIcon } from '@heroicons/react/outline';
 
-const navigation = [{ name: 'Dashboard', href: '/app', icon: HomeIcon, current: false }];
+const navigation = [
+  { name: 'Dashboard', href: '/app', icon: HomeIcon, current: false, area: 'home' },
+  { name: 'Rrhh', href: '/app/rrhh', icon: UserGroupIcon, current: false, area: 'rrhh' },
+];
 const secondaryNavigation = [
   { name: 'Configuración', href: '#', icon: CogIcon },
   { name: 'Privacidad', href: '#', icon: ShieldCheckIcon },

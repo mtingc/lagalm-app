@@ -16,7 +16,7 @@ const Dashboard = ({ children }) => {
       <div className="lg:pl-64 flex flex-col flex-1">
         <Navbar sidebar={showSidebar} />
         <main className="sm:px-6 lg:px-8">
-          <div className="px-4 py-8 sm:px-0">{children}</div>
+          <div className="px-4 sm:px-0">{children}</div>
         </main>
       </div>
     </div>
