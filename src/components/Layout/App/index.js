@@ -42,7 +42,15 @@ const LayoutApp = ({ children }) => {
       {!auth ? <Login setRes={setRes} setShowToast={setShowToast} /> : <Dashboard>{children}</Dashboard>}
       <Toast
         icon={!status ? (message === 'Contraseña y correo no correctos, sesión no iniciada' ? '' : 'err') : 'done'}
-        title={status ? `Bienvenido ${auth.user.name} ${auth.user.lastname}` : null}
+        title={
+          status
+            ? auth.user.gender === 'female'
+              ? `Bienvenida ${auth.user.name} ${auth.user.lastname}`
+              : auth.user.gender === 'male'
+              ? `Bienvenido ${auth.user.name} ${auth.user.lastname}`
+              : `Bienvenidx ${auth.user.name} ${auth.user.lastname}`
+            : null
+        }
         description={message}
         show={showToast}
         setShow={setShowToast}
