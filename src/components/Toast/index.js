@@ -3,12 +3,14 @@ import { Transition } from '@headlessui/react';
 import { CheckCircleIcon, XCircleIcon, ExclamationCircleIcon, InformationCircleIcon } from '@heroicons/react/outline';
 import { XIcon } from '@heroicons/react/solid';
 
-const Toast = ({ icon, title, description, toast, toastValue }) => {
+const Toast = ({ icon, title, description, show, setShow }) => {
+  const onClose = () => setShow(false);
+
   return (
     <div aria-live="assertive" className="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start">
       <div className="w-full flex flex-col items-center space-y-4 sm:items-end">
         <Transition
-          show={toastValue}
+          show={show}
           as={Fragment}
           enter="transform ease-out duration-300 transition"
           enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
@@ -39,7 +41,7 @@ const Toast = ({ icon, title, description, toast, toastValue }) => {
                   <button
                     type="button"
                     className="bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    onClick={() => toast()}
+                    onClick={onClose}
                   >
                     <span className="sr-only">Close</span>
                     <XIcon className="h-5 w-5" aria-hidden="true" />

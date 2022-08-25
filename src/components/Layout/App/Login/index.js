@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useFormik } from 'formik';
@@ -9,18 +8,12 @@ import { LOGIN_USER } from '@gql/user';
 import { setToken, delToken, decodeToken } from '@utils/token';
 import { useAuth } from '@hooks/useAuth';
 
-import Toast from '@components/Toast';
 import logoLagalm from '@public/logo.png';
 
-const Login = () => {
+const Login = ({ setRes, setShowToast }) => {
   const [login] = useMutation(LOGIN_USER);
-  const [{ status, message }, setRes] = useState({});
 
   const { setUser } = useAuth();
-
-  // Toast
-  const [toast, setToast] = useState(false);
-  const showToast = () => setToast(!toast);
 
   const formik = useFormik({
     initialValues,
@@ -37,7 +30,7 @@ const Login = () => {
         });
         const { status, token } = result.data.login;
         setRes(result.data.login);
-        setToast(true);
+        setShowToast(true);
         status ? setToken(token) : delToken();
         setUser(decodeToken(token));
       } catch (e) {
@@ -47,7 +40,6 @@ const Login = () => {
   });
   return (
     <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-100">
-      {toast ? <Toast icon={!status ? (message === 'Contraseña y correo no correctos, sesión no iniciada' ? '' : 'err') : 'done'} description={message} toast={showToast} toastValue={toast} /> : null}
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <Image height={60} width={60} src={logoLagalm} alt="Lagalm Industrial" />

@@ -2,12 +2,16 @@ import { useState, useEffect, useMemo } from 'react';
 
 import Dashboard from '@components/Layout/App/Dashboard';
 import Login from '@components/Layout/App/Login';
+import Toast from '@components/Toast';
 
 import AuthContext from '@context/AuthContext';
 import { getToken, decodeToken } from '@utils/token';
 
 const LayoutApp = ({ children }) => {
   const [auth, setAuth] = useState(undefined);
+
+  const [{ status, message }, setRes] = useState({});
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     const token = getToken();
@@ -33,7 +37,18 @@ const LayoutApp = ({ children }) => {
 
   if (auth === undefined) return null;
 
-  return <AuthContext.Provider value={authData}>{!auth ? <Login /> : <Dashboard>{children}</Dashboard>}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={authData}>
+      {!auth ? <Login setRes={setRes} setShowToast={setShowToast} /> : <Dashboard>{children}</Dashboard>}
+      <Toast
+        icon={!status ? (message === 'Contraseña y correo no correctos, sesión no iniciada' ? '' : 'err') : 'done'}
+        title={status ? `Bienvenido ${auth.user.name} ${auth.user.lastname}` : null}
+        description={message}
+        show={showToast}
+        setShow={setShowToast}
+      />
+    </AuthContext.Provider>
+  );
 };
 
 export default LayoutApp;
