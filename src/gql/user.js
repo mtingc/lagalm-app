@@ -1,43 +1,51 @@
 import { gql } from '@apollo/client';
 
-const INFO_FRAGMENT = gql`
-  fragment InfoFragment on ResultInfo {
-    page
-    total
-    itemsPage
-    pages
-  }
-`;
+import { ADDRESS_FRAGMENT } from '@gql/address';
+import { IMAGE_FRAGMENT } from '@gql/image';
+import { DETAILS_FRAGMENT } from '@gql/details';
 
-export const DETAILS_FRAGMENT = gql`
-  fragment DetailsFragment on Details {
-    status
-    creatorUserId
-    creatorUser {
-      name
-      email
-    }
-    creationDate
-    modifierUserId {
-      name
-      email
-    }
-    lastModification
-  }
-`;
+import { INFO_FRAGMENT } from '@gql/info';
 
 export const USER_FRAGMENT = gql`
+  ${ADDRESS_FRAGMENT}
+  ${IMAGE_FRAGMENT}
   ${DETAILS_FRAGMENT}
   fragment UserFragment on User {
     id
     name
     lastname
+    birthday
+    gender
+    maritalStatus
+    curp
+    address {
+      ...AddressFragment
+    }
     email
     password
-    birthday
     phone
     role
     lastSession
+    avatar {
+      ...ImageFragment
+    }
+    rfc
+    schooling
+    nss
+    infonavitCredit
+    job {
+      workAreaId {
+        id
+        title
+      }
+      description
+      schedule {
+        from
+        to
+      }
+      salary
+      accountNumber
+    }
     details {
       ...DetailsFragment
     }

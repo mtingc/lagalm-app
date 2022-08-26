@@ -4,9 +4,9 @@ import { BellIcon, MenuAlt1Icon } from '@heroicons/react/outline';
 import { ChevronDownIcon, SearchIcon } from '@heroicons/react/solid';
 import { useAuth } from '@hooks/useAuth';
 
-import WomanAvatar from '@public/avatar/WOMAN.jpg';
-import ManAvatar from '@public/avatar/MAN.jpg';
-import DefaultAvatar from '@public/avatar/WOMAN.jpg';
+import WomanAvatar from '@public/avatar/woman.jpg';
+import ManAvatar from '@public/avatar/man.jpg';
+import DefaultAvatar from '@public/avatar/other.jpg';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -66,8 +66,8 @@ const Navbar = ({ sidebar }) => {
             <div>
               <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
                 <img
-                  className="rounded-full h-11 w-10 border p-1"
-                  src={avatar ? avatar : gender === 'female' ? WomanAvatar.src : gender === 'male' ? ManAvatar.src : DefaultAvatar.src}
+                  className="rounded-full h-10 w-10"
+                  src={avatar ? avatar.url : gender === 'MUJER' ? WomanAvatar.src : gender === 'HOMBRE' ? ManAvatar.src : DefaultAvatar.src}
                   alt={('Perfil de ', name)}
                 />
                 <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">

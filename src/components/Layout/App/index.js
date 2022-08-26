@@ -44,9 +44,9 @@ const LayoutApp = ({ children }) => {
         icon={!status ? (message === 'Contraseña y correo no correctos, sesión no iniciada' ? '' : 'err') : 'done'}
         title={
           status
-            ? auth.user.gender === 'female'
+            ? auth.user.gender === 'MUJER'
               ? `Bienvenida ${auth.user.name} ${auth.user.lastname}`
-              : auth.user.gender === 'male'
+              : auth.user.gender === 'HOMBRE'
               ? `Bienvenido ${auth.user.name} ${auth.user.lastname}`
               : `Bienvenidx ${auth.user.name} ${auth.user.lastname}`
             : null

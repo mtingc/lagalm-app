@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 
-const PaginationTable = ({ pagesData, pagination, setPagination }) => {
-  const { page, total, itemsPage, pages } = pagesData;
+const Pagination = ({ info, pagination, setPagination }) => {
+  const { page, total, itemsPage, pages } = info;
   const totalPages = [];
   for (let p = 1; p <= pages; p++) {
     totalPages.push(p);
@@ -68,4 +68,4 @@ const PaginationTable = ({ pagesData, pagination, setPagination }) => {
   );
 };
 
-export default PaginationTable;
+export default Pagination;
