@@ -11,7 +11,9 @@ import DefaultAvatar from '@public/avatar/other.jpg';
 
 const EmpleadosPage = () => {
   const [pagination, setPagination] = useState(1);
-  const { data } = useQuery(GET_USERS, { variables: { page: pagination, itemsPage: 15 } });
+  const { data, loading } = useQuery(GET_USERS, { variables: { page: pagination, itemsPage: 15 } });
+
+  if (loading) return <p>Cargando...</p>;
 
   let dataApi = data?.users.users.map(({ id, name, email, avatar, job, gender, details }) => {
     const image = avatar ? avatar.url : gender === 'MUJER' ? WomanAvatar.src : gender === 'HOMBRE' ? ManAvatar.src : DefaultAvatar.src;

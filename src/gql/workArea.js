@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 
 import { IMAGE_FRAGMENT } from '@gql/image';
 import { DETAILS_FRAGMENT } from '@gql/details';
+
 import { INFO_FRAGMENT } from '@gql/info';
 
 export const WORKAREA_FRAGMENT = gql`
@@ -16,6 +17,19 @@ export const WORKAREA_FRAGMENT = gql`
     }
     details {
       ...DetailsFragment
+    }
+  }
+`;
+
+export const Add_WORKAREA = gql`
+  ${WORKAREA_FRAGMENT}
+  mutation AddWorkArea($workArea: RrhhWorkAreaInput!) {
+    addWorkArea(workArea: $workArea) {
+      status
+      message
+      workArea {
+        ...WorkAreaFragment
+      }
     }
   }
 `;

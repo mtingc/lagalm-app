@@ -7,7 +7,9 @@ import { GET_WORKAREAS } from '@gql/workArea';
 
 const AreasTrabajoPage = () => {
   const [pagination, setPagination] = useState(1);
-  const { data } = useQuery(GET_WORKAREAS, { variables: { page: pagination, itemsPage: 15 } });
+  const { data, loading } = useQuery(GET_WORKAREAS, { variables: { page: pagination, itemsPage: 15 } });
+
+  if (loading) return <p>Cargando...</p>;
 
   let dataApi = data?.workAreas?.workAreas.map(({ id, title, description, image, details }) => {
     const status = details.status ? 'Activo' : 'Inactivo';

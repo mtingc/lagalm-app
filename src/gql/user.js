@@ -62,6 +62,19 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const REGISTER_USER = gql`
+  ${USER_FRAGMENT}
+  mutation RegisterUser($user: UserInput!) {
+    register(user: $user) {
+      status
+      message
+      user {
+        ...UserFragment
+      }
+    }
+  }
+`;
+
 export const GET_USER = gql`
   ${USER_FRAGMENT}
   query GetUser {
